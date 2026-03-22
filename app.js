@@ -678,6 +678,32 @@ async function reloadBandoriData() {
     } catch (e) {} // Fallback
   }
 
+  // API 内部去重：相同群号时保留认证时间更新的那条
+  if (rows.length) {
+    const dedupedMap = new Map();
+    rows.forEach((item) => {
+      const key = String(item.info || '').trim();
+      if (!key) {
+        dedupedMap.set(Symbol('no-info'), item);
+        return;
+      }
+
+      const prev = dedupedMap.get(key);
+      if (!prev) {
+        dedupedMap.set(key, item);
+        return;
+      }
+
+      const prevTime = new Date(prev.created_at || 0).getTime() || 0;
+      const currTime = new Date(item.created_at || 0).getTime() || 0;
+      if (currTime >= prevTime) {
+        dedupedMap.set(key, item);
+      }
+    });
+
+    rows = Array.from(dedupedMap.values());
+  }
+
   try {
     const polymerResp = await fetch(CONFIG.POLYMERIZATION_URL, { cache: 'no-store' });
     if (polymerResp.ok) {
