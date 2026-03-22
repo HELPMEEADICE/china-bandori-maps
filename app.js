@@ -16,6 +16,7 @@ let bubbleActionBound = false;
 let activeBubbleState = null;
 let bubbleAnimToken = 0;
 let invertCtrlBubble = false;
+let feedbackModalBound = false;
 
 function normalizeProvinceName(name) {
   if (!name) return '';
@@ -151,6 +152,34 @@ function bindIntroToggle() {
   }
 
   introToggleBound = true;
+}
+
+function bindFeedbackModal() {
+  if (feedbackModalBound) return;
+
+  const openBtn = document.getElementById('feedbackModalBtn');
+  const modal = document.getElementById('feedbackModal');
+  const closeBtn = document.getElementById('feedbackModalClose');
+  if (!openBtn || !modal || !closeBtn) return;
+
+  const open = () => {
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
+  };
+
+  const close = () => {
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+  };
+
+  openBtn.addEventListener('click', open);
+  closeBtn.addEventListener('click', close);
+
+  modal.addEventListener('click', (event) => {
+    if (event.target === modal) close();
+  });
+
+  feedbackModalBound = true;
 }
 
 async function fetchBandoriData() {
@@ -740,6 +769,7 @@ async function init() {
   renderChinaMap();
   bindCopyAction();
   bindIntroToggle();
+  bindFeedbackModal();
 }
 
 window.addEventListener('resize', renderChinaMap);

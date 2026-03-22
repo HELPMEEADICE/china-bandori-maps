@@ -24,6 +24,28 @@
           <span class="md3-switch-track"><span class="md3-switch-thumb"></span></span>
           <span id="invertCtrlLabel" class="md3-switch-label">反转操作（默认关）</span>
         </label>
+
+        <div class="intro-links">
+          <a
+            class="github-link"
+            href="https://github.com/HELPMEEADICE/china-bandori-maps"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub 开源地址"
+          >
+            <img src="https://github.githubassets.com/favicons/favicon.svg" alt="GitHub" />
+            <span>开源仓库</span>
+          </a>
+
+          <button
+            id="feedbackModalBtn"
+            class="feedback-link"
+            type="button"
+            aria-label="反馈与杂谈邦群"
+          >
+            反馈与杂谈邦群（宣）：1046229865
+          </button>
+        </div>
       </section>
 
       <section id="selectedCard" class="md3-card" aria-label="已选择省份">
@@ -45,6 +67,21 @@
       </section>
 
       <div id="badgeBubble" class="map-bubble" aria-live="polite"></div>
+
+      <div id="feedbackModal" class="feedback-modal" aria-hidden="true">
+        <div class="feedback-modal-card" role="dialog" aria-modal="true" aria-label="反馈群二维码">
+          <button id="feedbackModalClose" class="feedback-modal-close" type="button" aria-label="关闭">×</button>
+          <img src="./qrcode.jpg" alt="反馈群二维码" class="feedback-modal-image" />
+          <a
+            href="https://qm.qq.com/q/j1lqVJcjNC"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="feedback-modal-link"
+          >
+            前往加群链接
+          </a>
+        </div>
+      </div>
 
       <div id="tooltip"></div>
     </div>
