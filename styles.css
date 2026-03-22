@@ -498,6 +498,10 @@ body {
   border: 1px solid rgba(179, 33, 102, 0.25);
 }
 
+#nonRegionToggleBtn {
+  top: 74px;
+}
+
 .side-toggle-btn.active {
   color: #ffffff;
   background: var(--md-primary);

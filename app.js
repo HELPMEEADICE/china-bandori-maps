@@ -90,6 +90,7 @@ function applyMobileModeLayout() {
     map: document.getElementById('map'),
     selectedCard: document.getElementById('selectedCard'),
     overseasBtn: document.getElementById('overseasToggleBtn'),
+    nonRegionBtn: document.getElementById('nonRegionToggleBtn'),
     sheetHandle: document.getElementById('mobileSheetHandle'),
     controlCard: document.getElementById('controlCard'),
     introCard: document.getElementById('introCard')
@@ -101,7 +102,11 @@ function applyMobileModeLayout() {
       els.selectedCard.insertBefore(els.sheetHandle, els.selectedCard.firstChild);
       els.selectedCard.insertBefore(els.overseasBtn, els.sheetHandle.nextSibling);
     }
+    if (els.nonRegionBtn && els.nonRegionBtn.parentElement !== els.selectedCard) {
+      els.overseasBtn.after(els.nonRegionBtn);
+    }
     els.overseasBtn.classList.add('mobile-inside');
+    if (els.nonRegionBtn) els.nonRegionBtn.classList.add('mobile-inside');
     els.controlCard.classList.add('mobile-hidden');
     els.introCard.classList.add('collapsed');
 
@@ -114,10 +119,14 @@ function applyMobileModeLayout() {
     if (els.overseasBtn.parentElement !== els.map) {
       els.map.insertBefore(els.overseasBtn, els.controlCard);
     }
+    if (els.nonRegionBtn && els.nonRegionBtn.parentElement !== els.map) {
+      els.map.insertBefore(els.nonRegionBtn, els.controlCard);
+    }
     if (els.sheetHandle.parentElement !== els.map) {
       els.map.insertBefore(els.sheetHandle, els.controlCard);
     }
     els.overseasBtn.classList.remove('mobile-inside');
+    if (els.nonRegionBtn) els.nonRegionBtn.classList.remove('mobile-inside');
     els.controlCard.classList.remove('mobile-hidden');
     els.selectedCard.style.height = '';
   }
@@ -388,7 +397,7 @@ function renderCurrentDetail() {
 
 function updateSummaryUI(source, animate = true) {
   const applySummary = () => {
-    const mainlandTotal = Array.from(State.provinceGroupsMap.keys()).reduce((sum, key) => key === '海外' ? sum : sum + (State.provinceGroupsMap.get(key)?.length || 0), 0);
+    const mainlandTotal = Array.from(State.provinceGroupsMap.keys()).reduce((sum, key) => (key === '海外' || key === '非地区') ? sum : sum + (State.provinceGroupsMap.get(key)?.length || 0), 0);
     
     document.getElementById('selectedTitle').textContent = '全国邦群数据';
     document.getElementById('selectedProvince').textContent = `${mainlandTotal} 个群`;
@@ -411,6 +420,7 @@ function updateSummaryUI(source, animate = true) {
   updateSortButtonView();
   setGlobalSearchEnabled(false, { resetToDefault: false });
   document.getElementById('overseasToggleBtn')?.classList.remove('active');
+  document.getElementById('nonRegionToggleBtn')?.classList.remove('active');
 }
 
 function showProvinceDetails(provinceName) {
@@ -421,6 +431,8 @@ function showProvinceDetails(provinceName) {
 
   const btn = document.getElementById('overseasToggleBtn');
   if (btn) btn.classList.toggle('active', key === '海外');
+  const nonRegionBtn = document.getElementById('nonRegionToggleBtn');
+  if (nonRegionBtn) nonRegionBtn.classList.toggle('active', key === '非地区');
 }
 
 // ==========================================
@@ -592,7 +604,7 @@ function renderChinaMap() {
   const svg = d3.select('#mapSvg');
   const g = svg.select('g');
 
-  const allCounts = Array.from(State.provinceGroupsMap.entries()).filter(([k]) => k !== '海外').map(([, arr]) => arr.length);
+  const allCounts = Array.from(State.provinceGroupsMap.entries()).filter(([k]) => k !== '海外' && k !== '非地区').map(([, arr]) => arr.length);
   const maxCount = allCounts.length ? Math.max(...allCounts) : 1;
 
   g.selectAll('.province').each(function (d) {
@@ -678,6 +690,7 @@ async function reloadBandoriData() {
     } catch (e) {} // Fallback
   }
 
+  // 聚合数据源（"非地区"分类的群信息需添加在 bandori_polymerization.json 中，province 字段填写"非地区"）
   try {
     const polymerResp = await fetch(CONFIG.POLYMERIZATION_URL, { cache: 'no-store' });
     if (polymerResp.ok) {
@@ -716,6 +729,7 @@ async function reloadBandoriData() {
   updateSummaryUI(source, false);
   renderChinaMap();
   if (State.selectedProvinceKey === '海外') showProvinceDetails('海外');
+  if (State.selectedProvinceKey === '非地区') showProvinceDetails('非地区');
 }
 
 // ==========================================
@@ -797,6 +811,15 @@ function bindAllStaticEvents() {
     setGlobalSearchEnabled(false);
     State.selectedProvinceKey = '海外';
     showProvinceDetails('海外');
+    hideMapBubble();
+    State.mapViewState?.g.selectAll('.province').classed('selected', false);
+  });
+
+  // 4.1 非地区切换（实现方式与"海外"一致，数据需添加在 bandori_polymerization.json 中，province 字段填写"非地区"）
+  document.getElementById('nonRegionToggleBtn')?.addEventListener('click', () => {
+    setGlobalSearchEnabled(false);
+    State.selectedProvinceKey = '非地区';
+    showProvinceDetails('非地区');
     hideMapBubble();
     State.mapViewState?.g.selectAll('.province').classed('selected', false);
   });
