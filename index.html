@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>粉色主题中国地图</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div id="map">
+      <svg id="mapSvg"></svg>
+      <section id="introCard" class="md3-card" aria-label="地图介绍">
+        <h2 class="card-title">全国邦群地图</h2>
+        <p class="card-body">
+          本网站用于聚合展示全国各省及海外地区的 BanG Dream! 群聊信息，支持地图缩放、拖拽、分省查看、国外切换与一键复制群号，帮助同好快速找到组织。
+        </p>
+        <p>
+          本软件以 GPLv3 进行开源
+        </p>
+      </section>
+
+      <section id="selectedCard" class="md3-card" aria-label="已选择省份">
+        <h2 id="selectedTitle" class="card-title">全国邦群数据</h2>
+        <p id="selectedProvince" class="card-value">加载中...</p>
+        <p id="selectedMeta" class="card-body">正在获取最新数据</p>
+        <div id="groupList" class="group-list"></div>
+      </section>
+
+      <button id="overseasToggleBtn" class="md3-btn md3-btn-tonal side-toggle-btn" type="button">国外</button>
+
+      <section id="controlCard" class="md3-card" aria-label="地图控件">
+        <h2 class="card-title">地图控件</h2>
+        <div class="control-row">
+          <button id="zoomInBtn" class="md3-btn" type="button">放大</button>
+          <button id="zoomOutBtn" class="md3-btn" type="button">缩小</button>
+          <button id="resetViewBtn" class="md3-btn md3-btn-tonal" type="button">重置</button>
+        </div>
+      </section>
+
+      <div id="tooltip"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/d3@3.5.17/d3.min.js"></script>
+    <script src="./china.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
