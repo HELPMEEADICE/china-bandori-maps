@@ -11,6 +11,7 @@ let mapViewState = null;
 let controlsBound = false;
 let copyActionBound = false;
 let selectedCardAnimToken = 0;
+let introToggleBound = false;
 
 function normalizeProvinceName(name) {
   if (!name) return '';
@@ -75,6 +76,25 @@ function bindCopyAction() {
   });
 
   copyActionBound = true;
+}
+
+function bindIntroToggle() {
+  if (introToggleBound) return;
+
+  const introCard = document.getElementById('introCard');
+  const closeBtn = document.getElementById('introCloseBtn');
+  const expandBtn = document.getElementById('introExpandBtn');
+  if (!introCard || !closeBtn || !expandBtn) return;
+
+  closeBtn.addEventListener('click', () => {
+    introCard.classList.add('collapsed');
+  });
+
+  expandBtn.addEventListener('click', () => {
+    introCard.classList.remove('collapsed');
+  });
+
+  introToggleBound = true;
 }
 
 async function fetchBandoriData() {
@@ -496,6 +516,7 @@ async function init() {
   updateSummaryUI(source);
   renderChinaMap();
   bindCopyAction();
+  bindIntroToggle();
 }
 
 window.addEventListener('resize', renderChinaMap);
