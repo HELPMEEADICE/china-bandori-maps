@@ -1,0 +1,28 @@
+{
+    "success": true,
+    "total": 2,
+    "data": [
+        {
+            "id": 1,
+            "province": "浙江",
+            "name": "杭州邦O群",
+            "info": "1046037459",
+            "type": "region",
+            "verified": 1,
+            "raw_text": "杭州邦O群 1046037459",
+            "created_at": "2026-03-23",
+            "project": "bandori"
+        },
+        {
+            "id": 2,
+            "province": "北京",
+            "name": "北京中学生联合邦群",
+            "info": "1016037405",
+            "type": "school",
+            "verified": 1,
+            "raw_text": "北中邦 1046037459",
+            "created_at": "2026-03-23",
+            "project": "bandori"
+        }
+    ]
+}

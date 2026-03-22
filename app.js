@@ -5,7 +5,8 @@ const CONFIG = {
   BASE_WIDTH: 960,
   BASE_HEIGHT: 700,
   API_URL: 'https://mapapi.enldm.cyou/api/bandori',
-  FALLBACK_URLS: ['./bandori.json']
+  FALLBACK_URLS: ['./bandori.json'],
+  POLYMERIZATION_URL: './bandori_polymerization.json'
 };
 
 const State = {
@@ -676,6 +677,30 @@ async function reloadBandoriData() {
       }
     } catch (e) {} // Fallback
   }
+
+  try {
+    const polymerResp = await fetch(CONFIG.POLYMERIZATION_URL, { cache: 'no-store' });
+    if (polymerResp.ok) {
+      const polymerJson = await polymerResp.json();
+      if (polymerJson?.data && Array.isArray(polymerJson.data)) {
+        const apiInfoSet = new Set(rows.map(item => String(item.info || '').trim()).filter(Boolean));
+        const mergedRows = rows.slice();
+
+        polymerJson.data.forEach((item) => {
+          const infoKey = String(item.info || '').trim();
+          if (infoKey && apiInfoSet.has(infoKey)) return;
+          mergedRows.push(item);
+        });
+
+        rows = mergedRows;
+        if (source !== 'none') {
+          source += ' + 作者收集';
+        } else {
+          source = CONFIG.POLYMERIZATION_URL;
+        }
+      }
+    }
+  } catch (e) {}
 
   State.bandoriRows = rows;
   State.currentDataSource = source;
