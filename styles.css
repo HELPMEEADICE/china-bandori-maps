@@ -682,6 +682,11 @@ html, body {
   color: #7f0f47;
 }
 
+.copy-number.link-like {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
 .copy-number:active {
   transform: translateY(1px);
 }
@@ -718,6 +723,11 @@ html, body {
 
 .copy-btn:active {
   transform: translateY(1px);
+}
+
+.copy-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
 }
 
 /* ================== 控制面板 ================== */

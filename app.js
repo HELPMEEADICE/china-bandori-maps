@@ -41,6 +41,13 @@ const State = {
 // ==========================================
 const Utils = {
   isMobileViewport: () => window.matchMedia('(max-width: 720px)').matches,
+  extractUrl: (item) => {
+    const source = `${item?.name || ''} ${item?.raw_text || ''} ${item?.info || ''}`;
+    const match = source.match(/https?:\/\/[^\s]+|discord\.gg\/[^\s]+|discord\.com\/invite\/[^\s]+/i);
+    if (!match) return null;
+    const raw = match[0];
+    return /^https?:\/\//i.test(raw) ? raw : `https://${raw}`;
+  },
   
   normalizeProvinceName: (name) => {
     if (!name) return '';
@@ -267,11 +274,19 @@ function renderGroupList(rows) {
 
   listEl.innerHTML = rows.map((item) => {
     const name = Utils.escapeHTML(item.name || '未命名群');
-    const rawInfo = item.info || '';
-    const info = Utils.escapeHTML(rawInfo || '无联系方式');
+    const detectedUrl = Utils.extractUrl(item);
+    const rawInfo = detectedUrl || item.info || '';
+    const infoText = rawInfo || '无联系方式';
+    const info = Utils.escapeHTML(infoText);
     const copyValue = encodeURIComponent(String(rawInfo));
     const type = Utils.escapeHTML(Utils.groupTypeText(item.type));
     const verifyMeta = Utils.escapeHTML(item.verified ? '已认证' : '未认证') + ' · 认证时间：' + Utils.escapeHTML(Utils.formatCreatedAt(item.created_at));
+    const actionText = detectedUrl ? '复制链接' : '复制群号';
+    const infoClass = detectedUrl ? 'group-info copy-number link-like' : 'group-info copy-number';
+    const infoAttrs = detectedUrl
+      ? `data-href="${Utils.escapeHTML(detectedUrl)}" title="点击打开链接"`
+      : `data-copy="${copyValue}" title="点击复制群号"`;
+    const buttonAttrs = rawInfo ? `data-copy="${copyValue}"` : 'disabled';
     
     return `
       <article class="group-item">
@@ -280,8 +295,8 @@ function renderGroupList(rows) {
           <span class="group-chip">${type}</span>
         </div>
         <div class="group-info-row">
-          <p class="group-info copy-number" data-copy="${copyValue}" title="点击复制群号">${info}</p>
-          <button class="copy-btn" data-copy="${copyValue}" type="button">复制群号</button>
+          <p class="${infoClass}" ${infoAttrs}>${info}</p>
+          <button class="copy-btn" ${buttonAttrs} type="button">${actionText}</button>
         </div>
         <p class="group-meta">${verifyMeta}</p>
       </article>
@@ -621,6 +636,13 @@ async function reloadBandoriData() {
 function bindAllStaticEvents() {
   // 1. 复制功能 (事件委托)
   document.addEventListener('click', async (e) => {
+    const linkTrigger = e.target.closest('.copy-number[data-href]');
+    if (linkTrigger) {
+      const href = linkTrigger.getAttribute('data-href');
+      if (href) window.open(href, '_blank', 'noopener,noreferrer');
+      return;
+    }
+
     const trigger = e.target.closest('.copy-btn, .copy-number, .map-bubble-item');
     if (!trigger) return;
     
