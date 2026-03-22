@@ -25,6 +25,7 @@ let refreshActionBound = false;
 let mobileEdgeBounceBound = false;
 let easterEggBound = false;
 let mobilePinchGuardBound = false;
+let footerHideBound = false;
 let listToolsBound = false;
 let currentDetailProvinceName = '';
 let currentDetailRows = [];
@@ -413,6 +414,14 @@ function bindRightClickGuard() {
     'contextmenu',
     (event) => {
       if (developerModeEnabled) return;
+
+      const footer = document.getElementById('siteFooter');
+      if (footer && event.target instanceof Element && event.target.closest('#siteFooter')) {
+        event.preventDefault();
+        footer.classList.add('site-footer-hidden');
+        return;
+      }
+
       event.preventDefault();
 
       const refreshBtn = document.getElementById('refreshApiBtn');
@@ -453,6 +462,11 @@ function bindRightClickGuard() {
   );
 
   rightClickGuardBound = true;
+}
+
+function bindFooterHide() {
+  if (footerHideBound) return;
+  footerHideBound = true;
 }
 
 async function reloadBandoriData() {
@@ -1302,6 +1316,7 @@ async function init() {
   bindMobileEdgeBounce();
   bindEasterEgg();
   bindMobilePinchGuard();
+  bindFooterHide();
 }
 
 window.addEventListener('resize', () => {
