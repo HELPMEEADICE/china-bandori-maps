@@ -21,6 +21,7 @@ let rightClickGuardBound = false;
 let developerModeEnabled = false;
 let resetClickBurstCount = 0;
 let resetClickBurstTimer = null;
+let refreshActionBound = false;
 
 function normalizeProvinceName(name) {
   if (!name) return '';
@@ -133,11 +134,76 @@ function bindRightClickGuard() {
     (event) => {
       if (developerModeEnabled) return;
       event.preventDefault();
+
+      const refreshBtn = document.getElementById('refreshApiBtn');
+      if (!refreshBtn) return;
+
+      const maxX = Math.max(8, window.innerWidth - 120);
+      const maxY = Math.max(8, window.innerHeight - 48);
+      const x = Math.min(maxX, event.clientX + 8);
+      const y = Math.min(maxY, event.clientY + 8);
+
+      const wasOpen = refreshBtn.classList.contains('show');
+
+      if (!wasOpen) {
+        refreshBtn.classList.add('instant-place');
+      }
+
+      refreshBtn.style.left = x + 'px';
+      refreshBtn.style.top = y + 'px';
+      refreshBtn.classList.add('show');
+
+      if (!wasOpen) {
+        void refreshBtn.offsetHeight;
+        refreshBtn.classList.remove('instant-place');
+      }
+    },
+    true
+  );
+
+  document.addEventListener(
+    'click',
+    (event) => {
+      const refreshBtn = document.getElementById('refreshApiBtn');
+      if (!refreshBtn) return;
+      if (event.target === refreshBtn) return;
+      refreshBtn.classList.remove('show');
     },
     true
   );
 
   rightClickGuardBound = true;
+}
+
+async function reloadBandoriData() {
+  const { rows, source } = await fetchBandoriData();
+  bandoriRows = rows;
+  provinceGroupsMap = buildProvinceMap(bandoriRows);
+  updateSummaryUI(source);
+  renderChinaMap();
+  if (selectedProvinceKey === '海外') {
+    showProvinceDetails('海外');
+  }
+}
+
+function bindRefreshAction() {
+  if (refreshActionBound) return;
+  const refreshBtn = document.getElementById('refreshApiBtn');
+  if (!refreshBtn) return;
+
+  refreshBtn.addEventListener('click', async () => {
+    refreshBtn.textContent = '刷新中...';
+    refreshBtn.disabled = true;
+    try {
+      await reloadBandoriData();
+    } finally {
+      refreshBtn.disabled = false;
+      refreshBtn.textContent = '刷新数据';
+      refreshBtn.classList.remove('show');
+    }
+  });
+
+  refreshActionBound = true;
 }
 
 function handleResetBurstForDeveloperMode() {
@@ -809,16 +875,12 @@ function renderChinaMap() {
 }
 
 async function init() {
-  const { rows, source } = await fetchBandoriData();
-  bandoriRows = rows;
-  provinceGroupsMap = buildProvinceMap(bandoriRows);
-
-  updateSummaryUI(source);
-  renderChinaMap();
+  await reloadBandoriData();
   bindCopyAction();
   bindIntroToggle();
   bindFeedbackModal();
   bindRightClickGuard();
+  bindRefreshAction();
 }
 
 window.addEventListener('resize', renderChinaMap);

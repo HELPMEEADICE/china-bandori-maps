@@ -327,6 +327,52 @@ body {
   background: #9f1858;
 }
 
+.context-refresh-btn {
+  position: fixed;
+  z-index: 80;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(179, 33, 102, 0.35);
+  border-radius: 999px;
+  background: #b32166;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+  padding: 10px 14px;
+  box-shadow: 0 6px 20px rgba(88, 16, 51, 0.32);
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(8px) scale(0.9);
+  transition: left 260ms cubic-bezier(0.22, 1, 0.36, 1), top 260ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 200ms cubic-bezier(0.22, 1, 0.36, 1), transform 240ms cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 240ms step-end;
+}
+
+.context-refresh-btn.show {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+  transition: left 260ms cubic-bezier(0.22, 1, 0.36, 1), top 260ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 180ms cubic-bezier(0.22, 1, 0.36, 1), transform 220ms cubic-bezier(0.22, 1, 0.36, 1), visibility 0ms;
+}
+
+.context-refresh-btn.instant-place {
+  transition: none !important;
+}
+
+.context-refresh-btn:hover {
+  background: #9f1858;
+}
+
+.context-refresh-btn:active {
+  transform: translateY(1px) scale(0.98);
+}
+
 #selectedCard {
   top: 16px;
   right: 16px;
