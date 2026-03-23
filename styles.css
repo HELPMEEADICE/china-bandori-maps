@@ -534,6 +534,16 @@ body {
   border: 1px solid rgba(179, 33, 102, 0.18);
   box-shadow: 0 16px 48px rgba(48, 13, 30, 0.24);
   padding: 18px;
+  transform: translateY(16px) scale(0.92);
+  opacity: 0;
+  transition: transform 320ms var(--ease-spring), opacity 240ms ease, height 380ms var(--ease-spring);
+  will-change: transform, opacity, height;
+}
+
+.calendar-modal.open .calendar-modal-card,
+.event-poster-modal.open .event-poster-card {
+  transform: translateY(0) scale(1);
+  opacity: 1;
 }
 
 .calendar-modal-close,

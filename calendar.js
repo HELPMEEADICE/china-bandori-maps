@@ -3,6 +3,7 @@
     events: [],
     currentDate: new Date(),
     selectedDateKey: '',
+    modalAnimToken: 0,
   };
 
   const els = {};
@@ -68,6 +69,40 @@
     els.eventPosterModal.setAttribute('aria-hidden', 'true');
   }
 
+  function animateCalendarCardResize(updateFn) {
+    const card = els.calendarModal?.querySelector('.calendar-modal-card');
+    if (!card) {
+      updateFn();
+      return;
+    }
+
+    state.modalAnimToken += 1;
+    const token = state.modalAnimToken;
+    const startHeight = card.getBoundingClientRect().height;
+    card.style.height = `${startHeight}px`;
+
+    updateFn();
+
+    card.style.height = 'auto';
+    const targetHeight = card.getBoundingClientRect().height;
+    card.style.height = `${startHeight}px`;
+    void card.offsetHeight;
+
+    requestAnimationFrame(() => {
+      if (token !== state.modalAnimToken) return;
+      card.style.height = `${targetHeight}px`;
+    });
+
+    const clear = () => {
+      if (token !== state.modalAnimToken) return;
+      card.style.height = '';
+      card.removeEventListener('transitionend', clear);
+    };
+
+    card.addEventListener('transitionend', clear);
+    setTimeout(clear, 420);
+  }
+
   function renderSelectedDayEvents(dateKey, eventMap) {
     const dayEvents = eventMap.get(dateKey) || [];
     if (!dayEvents.length) {
@@ -89,6 +124,7 @@
   }
 
   function renderCalendar() {
+    animateCalendarCardResize(() => {
     const current = state.currentDate;
     const year = current.getFullYear();
     const month = current.getMonth();
@@ -146,6 +182,7 @@
     }
 
     renderSelectedDayEvents(state.selectedDateKey, eventMap);
+    });
   }
 
   function bindEvents() {
