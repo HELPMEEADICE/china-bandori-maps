@@ -97,6 +97,7 @@ function applyMobileModeLayout() {
   if (!els.map || !els.selectedCard || !els.overseasBtn || !els.controlCard || !els.introCard || !els.sheetHandle) return;
 
   const nonRegionalBtn = document.getElementById('nonRegionalToggleBtn');
+  const calendarBtn = document.getElementById('calendarToggleBtn');
 
   if (Utils.isMobileViewport()) {
     if (els.overseasBtn.parentElement !== els.selectedCard || els.sheetHandle.parentElement !== els.selectedCard) {
@@ -105,9 +106,13 @@ function applyMobileModeLayout() {
       if (nonRegionalBtn) {
         els.selectedCard.insertBefore(nonRegionalBtn, els.overseasBtn.nextSibling);
       }
+      if (calendarBtn) {
+        els.selectedCard.insertBefore(calendarBtn, (nonRegionalBtn || els.overseasBtn).nextSibling);
+      }
     }
     els.overseasBtn.classList.add('mobile-inside');
     nonRegionalBtn?.classList.add('mobile-inside');
+    calendarBtn?.classList.add('mobile-inside');
     els.controlCard.classList.add('mobile-hidden');
     els.introCard.classList.add('collapsed');
 
@@ -123,11 +128,15 @@ function applyMobileModeLayout() {
     if (nonRegionalBtn && nonRegionalBtn.parentElement !== els.map) {
       els.map.insertBefore(nonRegionalBtn, els.controlCard);
     }
+    if (calendarBtn && calendarBtn.parentElement !== els.map) {
+      els.map.insertBefore(calendarBtn, els.controlCard);
+    }
     if (els.sheetHandle.parentElement !== els.map) {
       els.map.insertBefore(els.sheetHandle, els.controlCard);
     }
     els.overseasBtn.classList.remove('mobile-inside');
     nonRegionalBtn?.classList.remove('mobile-inside');
+    calendarBtn?.classList.remove('mobile-inside');
     els.controlCard.classList.remove('mobile-hidden');
     els.selectedCard.style.height = '';
   }
@@ -857,6 +866,11 @@ function bindAllStaticEvents() {
     showProvinceDetails('非地区');
     hideMapBubble();
     State.mapViewState?.g.selectAll('.province').classed('selected', false);
+  });
+
+  document.getElementById('calendarToggleBtn')?.addEventListener('click', () => {
+    document.getElementById('calendarModal')?.classList.add('open');
+    document.getElementById('calendarModal')?.setAttribute('aria-hidden', 'false');
   });
 
   // 5. 点击空白处关闭气泡

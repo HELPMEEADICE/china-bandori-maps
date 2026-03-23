@@ -174,6 +174,7 @@
 
       <button id="overseasToggleBtn" class="md3-btn md3-btn-tonal side-toggle-btn" type="button">国外</button>
       <button id="nonRegionalToggleBtn" class="md3-btn md3-btn-tonal side-toggle-btn secondary-toggle-btn" type="button">非地区</button>
+      <button id="calendarToggleBtn" class="md3-btn md3-btn-tonal side-toggle-btn tertiary-toggle-btn" type="button">活动日历</button>
       <div id="mobileSheetHandle" class="mobile-sheet-handle" aria-hidden="true">
         <span class="mobile-sheet-bar"></span>
       </div>
@@ -212,6 +213,28 @@
         </div>
       </div>
 
+      <div id="calendarModal" class="calendar-modal" aria-hidden="true">
+        <div class="calendar-modal-card" role="dialog" aria-modal="true" aria-label="活动日历">
+          <button id="calendarModalClose" class="calendar-modal-close" type="button" aria-label="关闭">×</button>
+          <div class="calendar-header">
+            <button id="calendarPrevBtn" class="calendar-nav-btn" type="button">‹</button>
+            <h3 id="calendarTitle" class="calendar-title">活动日历</h3>
+            <button id="calendarNextBtn" class="calendar-nav-btn" type="button">›</button>
+          </div>
+          <div id="calendarGrid" class="calendar-grid"></div>
+          <div id="calendarEventList" class="calendar-event-list"></div>
+        </div>
+      </div>
+
+      <div id="eventPosterModal" class="event-poster-modal" aria-hidden="true">
+        <div class="event-poster-card" role="dialog" aria-modal="true" aria-label="活动宣传图">
+          <button id="eventPosterClose" class="event-poster-close" type="button" aria-label="关闭">×</button>
+          <h3 id="eventPosterTitle" class="event-poster-title"></h3>
+          <img id="eventPosterImage" class="event-poster-image" alt="活动宣传图" />
+          <p id="eventPosterText" class="event-poster-text"></p>
+        </div>
+      </div>
+
       <button id="refreshApiBtn" class="context-refresh-btn" type="button">刷新数据</button>
 
       <div id="tooltip"></div>
@@ -224,6 +247,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/d3@3.5.17/d3.min.js"></script>
     <script defer src="./china.min.js"></script>
     <script defer src="./app.js"></script>
+    <script defer src="./calendar.js"></script>
     <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "78b2b1119eac4ef7b65a6197c9436394"}'></script>
   </body>
 </html>
