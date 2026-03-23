@@ -38,7 +38,15 @@
 
 <div align="center">
 
-[![Star History Chart](https://api.star-history.com/svg?repos=HELPMEEADICE/china-bandori-maps&type=Date)](https://star-history.com/#HELPMEEADICE/china-bandori-maps&Date)
+## Star History
+
+<a href="https://www.star-history.com/?repos=HELPMEEADICE%2Fchina-bandori-maps&type=date&legend=top-left">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/image?repos=HELPMEEADICE/china-bandori-maps&type=date&theme=dark&legend=top-left" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/image?repos=HELPMEEADICE/china-bandori-maps&type=date&legend=top-left" />
+   <img alt="Star History Chart" src="https://api.star-history.com/image?repos=HELPMEEADICE/china-bandori-maps&type=date&legend=top-left" />
+ </picture>
+</a>
 
 </div>
 
