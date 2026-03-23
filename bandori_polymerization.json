@@ -1,6 +1,6 @@
 {
     "success": true,
-    "total": 4,
+    "total": 5,
     "data": [
         {
             "id": 1,
@@ -43,6 +43,17 @@
             "type": "region",
             "verified": 1,
             "raw_text": "廊坊市 1061615824",
+            "created_at": "2026-03-23",
+            "project": "bandori"
+        },
+        {
+            "id": 5,
+            "province": "北京",
+            "name": "北京邦邦交流群",
+            "info": "788372999",
+            "type": "region",
+            "verified": 1,
+            "raw_text": "北京邦邦交流群 788372999",
             "created_at": "2026-03-23",
             "project": "bandori"
         }
