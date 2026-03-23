@@ -135,6 +135,17 @@
             "project": "bandori"
         },
         {
+            "id": 13,
+            "province": "",
+            "name": "集合吧老邦批歌友会",
+            "info": "940683224",
+            "type": "non-regional",
+            "verified": 1,
+            "raw_text": "集合吧老邦批歌友会",
+            "created_at": "2026-03-23",
+            "project": "bandori"
+        },
+        {
             "id": 15,
             "province": "",
             "name": "厦门·纺木吏佐粉丝见面会（8.24）",
