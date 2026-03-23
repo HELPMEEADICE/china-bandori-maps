@@ -1,6 +1,6 @@
 {
     "success": true,
-    "total": 73,
+    "total": 62,
     "data": [
         {
             "id": 1,
@@ -170,7 +170,7 @@
         {
             "id": 16,
             "province": "",
-            "name": "志崎桦音粉丝见面会「?6?7“NON”Stop Ⅷ」",
+            "name": "志崎桦音粉丝见面会「?“NON”Stop Ⅷ」",
             "info": "465859333",
             "type": "non-regional",
             "verified": 1,
@@ -236,7 +236,7 @@
         {
             "id": 22,
             "province": "",
-            "name": "BanG Dream?8?2?1?7?1?7?1?7欣遇亭",
+            "name": "BanG Dream????欣遇亭",
             "info": "737704963",
             "type": "non-regional",
             "verified": 1,
@@ -379,7 +379,7 @@
         {
             "id": 35,
             "province": "",
-            "name": "?8?2邦?8?2多?8?2利?8?2！?8?2 卸载！！！",
+            "name": "?邦?多?利?！? 卸载！！！",
             "info": "693710612",
             "type": "non-regional",
             "verified": 1,
@@ -577,17 +577,6 @@
         {
             "id": 53,
             "province": "",
-            "name": "中南林业科技大学邦群",
-            "info": "389286292",
-            "type": "non-regional",
-            "verified": 1,
-            "raw_text": "★",
-            "created_at": "2026-03-23",
-            "project": "bandori"
-        },
-        {
-            "id": 54,
-            "province": "",
             "name": "邦邦同好会 Kira~Kira~",
             "info": "476515120",
             "type": "non-regional",
@@ -597,7 +586,7 @@
             "project": "bandori"
         },
         {
-            "id": 55,
+            "id": 54,
             "province": "",
             "name": "西南交大邦邦群",
             "info": "1058757033",
@@ -608,7 +597,7 @@
             "project": "bandori"
         },
         {
-            "id": 56,
+            "id": 55,
             "province": "",
             "name": "邦邦*铁道群",
             "info": "1047808632",
@@ -619,7 +608,7 @@
             "project": "bandori"
         },
         {
-            "id": 57,
+            "id": 56,
             "province": "",
             "name": "大塚纱英",
             "info": "922940475",
@@ -630,106 +619,7 @@
             "project": "bandori"
         },
         {
-            "id": 58,
-            "province": "",
-            "name": "宁波大学与科院邦邦群",
-            "info": "736102868",
-            "type": "non-regional",
-            "verified": 1,
-            "raw_text": "无",
-            "created_at": "2026-03-23",
-            "project": "bandori"
-        },
-        {
-            "id": 59,
-            "province": "",
-            "name": "宁波财经学院邦邦群",
-            "info": "913304138",
-            "type": "non-regional",
-            "verified": 1,
-            "raw_text": "无",
-            "created_at": "2026-03-23",
-            "project": "bandori"
-        },
-        {
-            "id": 60,
-            "province": "",
-            "name": "扬州大学邦邦①群",
-            "info": "1040260817",
-            "type": "non-regional",
-            "verified": 1,
-            "raw_text": "无",
-            "created_at": "2026-03-23",
-            "project": "bandori"
-        },
-        {
-            "id": 61,
-            "province": "",
-            "name": "扬州大学邦邦②群",
-            "info": "1021345696",
-            "type": "non-regional",
-            "verified": 1,
-            "raw_text": "无",
-            "created_at": "2026-03-23",
-            "project": "bandori"
-        },
-        {
-            "id": 62,
-            "province": "",
-            "name": "东北师范大学邦邦群",
-            "info": "724715616",
-            "type": "non-regional",
-            "verified": 1,
-            "raw_text": "无",
-            "created_at": "2026-03-23",
-            "project": "bandori"
-        },
-        {
-            "id": 63,
-            "province": "",
-            "name": "桂林电子科技大学邦邦群",
-            "info": "1040990380",
-            "type": "non-regional",
-            "verified": 1,
-            "raw_text": "无",
-            "created_at": "2026-03-23",
-            "project": "bandori"
-        },
-        {
-            "id": 64,
-            "province": "",
-            "name": "广西师范大学邦邦群",
-            "info": "690963208",
-            "type": "non-regional",
-            "verified": 1,
-            "raw_text": "无",
-            "created_at": "2026-03-23",
-            "project": "bandori"
-        },
-        {
-            "id": 65,
-            "province": "",
-            "name": "桂林理工大学二偶企划同好会",
-            "info": "1057739033",
-            "type": "non-regional",
-            "verified": 1,
-            "raw_text": "无",
-            "created_at": "2026-03-23",
-            "project": "bandori"
-        },
-        {
-            "id": 66,
-            "province": "",
-            "name": "广西大学邦邦群",
-            "info": "741793647",
-            "type": "non-regional",
-            "verified": 1,
-            "raw_text": "GXU偶像同好会",
-            "created_at": "2026-03-23",
-            "project": "bandori"
-        },
-        {
-            "id": 67,
+            "id": 57,
             "province": "",
             "name": "海底捞群",
             "info": "801652984",
@@ -740,7 +630,7 @@
             "project": "bandori"
         },
         {
-            "id": 68,
+            "id": 58,
             "province": "",
             "name": "国内live无料群",
             "info": "112820264",
@@ -751,7 +641,7 @@
             "project": "bandori"
         },
         {
-            "id": 69,
+            "id": 59,
             "province": "",
             "name": "Roselia集会",
             "info": "1013467452",
@@ -762,7 +652,7 @@
             "project": "bandori"
         },
         {
-            "id": 70,
+            "id": 60,
             "province": "",
             "name": "鸡狗现地群",
             "info": "586937503",
@@ -773,7 +663,7 @@
             "project": "bandori"
         },
         {
-            "id": 71,
+            "id": 61,
             "province": "",
             "name": "全国邦群①群",
             "info": "1025093587",
@@ -784,24 +674,13 @@
             "project": "bandori"
         },
         {
-            "id": 72,
-            "province": "",
-            "name": "广东海洋大学邦多利同好会",
-            "info": "938934513",
-            "type": "non-regional",
-            "verified": 1,
-            "raw_text": "无",
-            "created_at": "2026-03-23",
-            "project": "bandori"
-        },
-        {
-            "id": 73,
+            "id": 62,
             "province": "",
             "name": "东北地区邦多利only群",
-            "info": "1037055967",
+            "info": "Dream!!",
             "type": "non-regional",
             "verified": 1,
-            "raw_text": "东北BanG Dream!! Live Only 不见不散",
+            "raw_text": "东北BanG",
             "created_at": "2026-03-23",
             "project": "bandori"
         }
