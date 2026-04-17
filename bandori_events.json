@@ -111,6 +111,30 @@
             "project": "bandori",
             "image": "",
             "offical": 0
+        },
+        {
+            "event": "BanG Dream! ONLY 中珠对邦一周年纪念",
+            "date": "2026-5-3",
+            "raw_text": "中山 SUNLIVE",
+            "project": "bandori",
+            "image": "",
+            "offical": 0
+        },
+        {
+            "event": "Xiamen BanG Dream! Only 2nd",
+            "date": "2026-6-19",
+            "raw_text": "厦门市湖里区Ovogo旺来现场（厦门华美空间店）",
+            "project": "bandori",
+            "image": "",
+            "offical": 0
+        },
+        {
+            "event": "川内高校联合对邦",
+            "date": "2026-5-1",
+            "raw_text": "四川省成都市天府广场行歌live",
+            "project": "bandori",
+            "image": "",
+            "offical": 0
         }
     ]
 }
