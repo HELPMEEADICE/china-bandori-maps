@@ -1,6 +1,6 @@
 {
     "success": true,
-    "total": 70,
+    "total": 71,
     "data": [
         {
             "id": 1,
@@ -770,6 +770,17 @@
             "verified": 1,
             "raw_text": "邦多利足球小窝 1084412595",
             "created_at": "2026-04-18",
+            "project": "bandori"
+        },
+        {
+            "id": 71,
+            "province": "",
+            "name": "邦演唱会无料交换群",
+            "info": "112820264",
+            "type": "non-regional",
+            "verified": 1,
+            "raw_text": "邦演唱会无料交换群 112820264",
+            "created_at": "2026-07-17",
             "project": "bandori"
         }
     ]
