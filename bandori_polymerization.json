@@ -1,6 +1,6 @@
 {
     "success": true,
-    "total": 71,
+    "total": 72,
     "data": [
         {
             "id": 1,
@@ -781,6 +781,17 @@
             "verified": 1,
             "raw_text": "邦演唱会无料交换群 112820264",
             "created_at": "2026-07-17",
+            "project": "bandori"
+        },
+        {
+            "id": 72,
+            "province": "",
+            "name": "冰川纱夜后援会",
+            "info": "967565021",
+            "type": "non-regional",
+            "verified": 1,
+            "raw_text": "冰川纱夜后援会 967565021",
+            "created_at": "2026-10-19",
             "project": "bandori"
         }
     ]
