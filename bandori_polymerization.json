@@ -1,6 +1,6 @@
 {
     "success": true,
-    "total": 72,
+    "total": 74,
     "data": [
         {
             "id": 1,
@@ -792,6 +792,28 @@
             "verified": 1,
             "raw_text": "冰川纱夜后援会 967565021",
             "created_at": "2026-10-19",
+            "project": "bandori"
+        },
+        {
+            "id": 73,
+            "province": "",
+            "name": "薇欧拉保护协会",
+            "info": "974772651",
+            "type": "non-regional",
+            "verified": 1,
+            "raw_text": "薇欧拉保护协会 974772651",
+            "created_at": "2026-11-25",
+            "project": "bandori"
+        },
+        {
+            "id": 74,
+            "province": "",
+            "name": "Our Notes 官方 Discord",
+            "info": "discord.gg/ournotes",
+            "type": "non-regional",
+            "verified": 1,
+            "raw_text": "Our Notes 官方 Discord discord.gg/ournotes",
+            "created_at": "2026-11-25",
             "project": "bandori"
         }
     ]
